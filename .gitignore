@@ -1,0 +1,5 @@
+##Ignore files
+./data
+./models
+./vectordb
+./venv

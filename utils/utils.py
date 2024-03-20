@@ -1,4 +1,18 @@
 def build_metafilter(input_config: dict) -> dict:
+    """
+    This function uses an input config to design a filter recognized by
+    the chroma vector database. The filter is a json type meant to have
+    multiple dictionaries bounded by the logic type.
+    
+    Note: All metadata filters MUST have present fields in the vectorDB
+
+    Input config has:
+        baseModel: Something like SDXL or SD1.5 
+            new models may show up as 'unk'
+        nsfw_filter: this is the users nsfw filter and is either 'safe' or ''
+        tag: CURRENTLY UNSUPPORTED 
+        
+    """
     meta_filter = {}
 
     # Define model condition
@@ -24,7 +38,10 @@ def build_metafilter(input_config: dict) -> dict:
     return meta_filter
 
 def sort_context_dict(context):
-    ##Prep context for prompt augmentation
+    """
+    Helper function to take context from vectorDB and generate a sorted dictionary of prompts, cleaned prompts, and negative prompts
+    This is a little fragile and must be tailored to the specific vectorDB
+    """
     result_dict = {}
 
     for doc in context:
@@ -64,6 +81,11 @@ def sort_context_dict(context):
 def generate_prompt(system_prompt: list,
                     context: list,
                     input_prompt: list) -> str:
+    """
+    An unused function broken out in main.py for readability and debugging
+    This is the prompt template used in EDA and testing to generate prompts
+    with Mistral
+    """
     prompt = f"### System:\n{system_prompt}\n"
 
     prompt += """### Instruction:

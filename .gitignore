@@ -1,5 +1,11 @@
-##Ignore files
+##Ignore directories
 ./data
 ./models
 ./vectordb
 ./venv
+
+##Ignore files
+./template.txt
+
+##ignore dumb files
+__pycache__/
